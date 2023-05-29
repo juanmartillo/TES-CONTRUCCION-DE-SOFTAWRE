@@ -1,0 +1,27 @@
+@startuml
+
+entity "Tienda" {
+  +nombre (PK)
+  direccion
+  telefono
+}
+
+entity "Producto" {
+  +codigo (PK)
+  +nombre
+  +precio
+  +stock
+  tienda_id (FK)
+}
+
+entity "Empleado" {
+  +id (PK)
+  +nombre
+  +apellido
+  tienda_id (FK)
+}
+
+Tienda --{ Producto : contiene
+Tienda --{ Empleado : emplea
+
+@enduml

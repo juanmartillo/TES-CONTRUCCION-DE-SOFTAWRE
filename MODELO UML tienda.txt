@@ -1,0 +1,31 @@
+@startuml
+
+class Tienda {
+  +nombre: string
+  +direccion: string
+  +telefono: string
+  +obtenerProductos(): List<Producto>
+  +obtenerEmpleados(): List<Empleado>
+  +agregarProducto(producto: Producto): void
+  +agregarEmpleado(empleado: Empleado): void
+}
+
+class Producto {
+  +codigo: string
+  +nombre: string
+  +precio: decimal
+  +stock: int
+  +obtenerTienda(): Tienda
+}
+
+class Empleado {
+  +id: int
+  +nombre: string
+  +apellido: string
+  +obtenerTienda(): Tienda
+}
+
+Tienda "1" --> "0..*" Producto: contiene
+Tienda "1" --> "0..*" Empleado: emplea
+
+@enduml
