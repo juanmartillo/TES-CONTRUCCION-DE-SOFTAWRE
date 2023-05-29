@@ -1,0 +1,59 @@
+@startuml
+
+class SistemaMedico {
+  +nombre: string
+  +version: string
+  +fechaLanzamiento: date
+  +pacientes: List<Paciente>
+  +doctores: List<Doctor>
+  +citas: List<Cita>
+  +agregarPaciente(paciente: Paciente): void
+  +agregarDoctor(doctor: Doctor): void
+  +agregarCita(cita: Cita): void
+  +buscarPaciente(nombre: string): Paciente
+  +buscarDoctor(nombre: string): Doctor
+  +buscarCita(id: string): Cita
+}
+
+class Paciente {
+  +id: string
+  +nombre: string
+  +fechaNacimiento: date
+  +telefono: string
+  +correo: string
+  +consultas: List<Consulta>
+  +agregarConsulta(consulta: Consulta): void
+}
+
+class Doctor {
+  +id: string
+  +nombre: string
+  +especialidad: string
+  +consultas: List<Consulta>
+  +agregarConsulta(consulta: Consulta): void
+}
+
+class Cita {
+  +id: string
+  +fecha: datetime
+  +paciente: Paciente
+  +doctor: Doctor
+}
+
+class Consulta {
+  +id: string
+  +fecha: datetime
+  +paciente: Paciente
+  +doctor: Doctor
+  +diagnostico: string
+  +receta: string
+}
+
+SistemaMedico "1" --> "*" Paciente: pacientes
+SistemaMedico "1" --> "*" Doctor: doctores
+SistemaMedico "1" --> "*" Cita: citas
+
+Paciente "1" --> "*" Consulta: consultas
+Doctor "1" --> "*" Consulta: consultas
+
+@enduml
